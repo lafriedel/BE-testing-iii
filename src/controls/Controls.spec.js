@@ -61,8 +61,18 @@ describe('Controls', () => {
         expect(toggleLocked).toHaveBeenCalled();
     });
 
-    test.skip("calls toggleClosed passed as a prop on button click", () => {
+    test("calls toggleClosed passed as a prop on button click", () => {
+        const toggleClosed = jest.fn();
         
+        const { getByText } = render(<Controls toggleClosed={toggleClosed} locked={false} closed={false} />);
+
+        const openButton = getByText(/close/i);
+
+        fireEvent.click(openButton);
+
+        expect(toggleClosed).toHaveBeenCalled();
+
+
     });
 
     test.skip('matches snapshot', () => {
