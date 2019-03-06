@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup, fireEvent } from 'react-testing-library';
 import renderer from 'react-test-renderer';
 import 'jest-dom/extend-expect';
 import Controls from './Controls';
@@ -47,6 +47,22 @@ describe('Controls', () => {
         expect(openButton).toBeDisabled();
         expect(openGate.textContent).toBe("Closed");
         expect(lockedGate.textContent).toBe("Locked");
+    });
+
+    test("calls toggleLocked (passed as a prop) on button click", () => {
+        const toggleLocked = jest.fn();
+
+        const { getByText } = render(<Controls toggleLocked={toggleLocked} closed={true}/>);
+
+        const lockButton = getByText(/lock gate/i);
+
+        fireEvent.click(lockButton);
+
+        expect(toggleLocked).toHaveBeenCalled();
+    });
+
+    test.skip("calls toggleClosed passed as a prop on button click", () => {
+        
     });
 
     test.skip('matches snapshot', () => {
