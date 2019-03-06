@@ -64,9 +64,9 @@ describe('Controls', () => {
     test("calls toggleClosed passed as a prop on button click", () => {
         const toggleClosed = jest.fn();
         
-        const { getByText } = render(<Controls toggleClosed={toggleClosed} locked={false} closed={false} />);
+        const { getByText } = render(<Controls toggleClosed={toggleClosed} locked={false} />);
 
-        const openButton = getByText(/close/i);
+        const openButton = getByText(/(close)|(open)/i);
 
         fireEvent.click(openButton);
 

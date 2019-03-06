@@ -7,7 +7,15 @@ import Display from './Display';
 afterEach(cleanup);
 
 describe('Display', () => {
-    // test.skip('defaults gate to unlocked and open');
+    test('defaults gate to unlocked and open', () => {
+        const { getByText } = render(<Display />);
+
+        const unlocked = getByText(/Unlocked/);
+        const open = getByText(/Open/);
+
+        expect(unlocked).toBeInTheDocument();
+        expect(open).toBeInTheDocument();
+    });
 
     test('displays "Closed" if props.closed === true', () => {
         const { getByText } = render(<Display closed={true} />);
