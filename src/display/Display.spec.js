@@ -25,17 +25,41 @@ describe('Display', () => {
         expect(locked).toBeInTheDocument();
     });
 
-    // test.skip('uses "red-led" class when displaying "Closed"');
+    test('uses "red-led" class when displaying "Closed"', () => {
+        const { getByText } = render(<Display closed={true} />);
 
-    // test.skip('uses "red-led" class when displaying "Locked"');
+        const closed = getByText(/Closed/);
 
-    // test.skip('uses "green-led" class when displaying "Open"');
+        expect(closed).toHaveClass("red-led")
+    });
 
-    // test.skip('uses "green-led" class when displaying "Unlocked"');
+    test('uses "red-led" class when displaying "Locked"', () => {
+        const { getByText } = render(<Display locked={true} />);
+
+        const locked = getByText(/Locked/);
+
+        expect(locked).toHaveClass("red-led");
+    });
+
+    test('uses "green-led" class when displaying "Open"', () => {
+        const { getByText } = render(<Display closed={false} />);
+
+        const open = getByText(/Open/);
+
+        expect(open).toHaveClass("green-led");
+    });
+
+    test('uses "green-led" class when displaying "Unlocked"', () => {
+        const { getByText } = render(<Display locked={false} />);
+
+        const unlocked = getByText(/Unlocked/);
+
+        expect(unlocked).toHaveClass("green-led");
+    });
 
     test.skip('matches snapshot', () => {
         const tree = renderer.create(<Display />);
 
-        expect(tree).toMatchSnapshot();
+        expect(tree.toJSON()).toMatchSnapshot();
     })
 })
