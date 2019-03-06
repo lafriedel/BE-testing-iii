@@ -8,9 +8,21 @@ import Display from '../display/Display';
 afterEach(cleanup);
 
 describe('Controls', () => {
-    // test.todo('provides button for toggling open/closed');
+    test('provides button for toggling open/closed', () => {
+        const { getByTestId } = render(<Controls />);
 
-    // test.todo('provides button for toggling locked/unlocked');
+        const openButton = getByTestId("openBtn");
+
+        expect(openButton).toBeInTheDocument();
+    });
+
+    test('provides button for toggling locked/unlocked', () => {
+        const { getByTestId } = render(<Controls />);
+
+        const lockButton = getByTestId("lockBtn");
+
+        expect(lockButton).toBeInTheDocument();
+    });
 
     test('disables lock button if gate is open', () => {
         render(<Controls closed={false} />)
