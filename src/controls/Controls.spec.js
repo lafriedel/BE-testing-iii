@@ -24,7 +24,18 @@ describe('Controls', () => {
 
     });
 
-    // test.todo('disables open button if gate is locked and closed');
+    test('disables open button if gate is locked and closed', () => {
+        render(<Controls locked={true} closed={true}/>);
+        const { getByTestId } = render(<Display locked={true} closed={true} />);
+
+        const openButton = getByTestId("openBtn");
+        const lockedGate = getByTestId("lockStatus");
+        const openGate = getByTestId("openStatus")
+
+        expect(openButton).toBeDisabled();
+        expect(openGate.textContent).toBe("Closed");
+        expect(lockedGate.textContent).toBe("Locked");
+    });
 
     test.skip('matches snapshot', () => {
         const tree = renderer.create(<Controls />)
