@@ -7,19 +7,31 @@ import Display from './Display';
 afterEach(cleanup);
 
 describe('Display', () => {
-    // test.todo('defaults gate to unlocked and open');
+    // test.skip('defaults gate to unlocked and open');
 
-    // test.todo('displays "Closed" if props.closed === true');
+    test('displays "Closed" if props.closed === true', () => {
+        const { getByText } = render(<Display closed={true} />);
 
-    // test.todo('displays "Locked" if props.locked === true');
+        const closed = getByText(/Closed/);
 
-    // test.todo('uses "red-led" class when displaying "Closed"');
+        expect(closed).toBeInTheDocument();
+    });
 
-    // test.todo('uses "red-led" class when displaying "Locked"');
+    test('displays "Locked" if props.locked === true', () => {
+        const { getByText } = render(<Display locked={true} />)
 
-    // test.todo('uses "green-led" class when displaying "Open"');
+        const locked = getByText(/Locked/);
 
-    // test.todo('uses "green-led" class when displaying "Unlocked"');
+        expect(locked).toBeInTheDocument();
+    });
+
+    // test.skip('uses "red-led" class when displaying "Closed"');
+
+    // test.skip('uses "red-led" class when displaying "Locked"');
+
+    // test.skip('uses "green-led" class when displaying "Open"');
+
+    // test.skip('uses "green-led" class when displaying "Unlocked"');
 
     test.skip('matches snapshot', () => {
         const tree = renderer.create(<Display />);
