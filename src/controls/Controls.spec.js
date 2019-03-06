@@ -105,7 +105,7 @@ describe('Controls', () => {
         expect(toggleClosed).toHaveBeenCalled();
     });
 
-    test.skip('matches snapshot', () => {
+    test('matches snapshot', () => {
         const tree = renderer.create(<Controls />)
 
         expect(tree.toJSON()).toMatchSnapshot();

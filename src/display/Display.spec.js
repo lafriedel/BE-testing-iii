@@ -65,7 +65,7 @@ describe('Display', () => {
         expect(unlocked).toHaveClass("green-led");
     });
 
-    test.skip('matches snapshot', () => {
+    test('matches snapshot', () => {
         const tree = renderer.create(<Display />);
 
         expect(tree.toJSON()).toMatchSnapshot();

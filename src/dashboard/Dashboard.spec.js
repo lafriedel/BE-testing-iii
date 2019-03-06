@@ -18,9 +18,9 @@ describe("Dashboard", () => {
     render(<Display />);
   });
 
-  test.skip('matches snapshot', () => {
+  test('matches snapshot', () => {
     const tree = renderer.create(<Dashboard />);
 
-    expect(tree.toJSON()).toMatchSnapShot();
+    expect(tree.toJSON()).toMatchSnapshot();
   });
 });
