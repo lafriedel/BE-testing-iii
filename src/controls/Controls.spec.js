@@ -24,6 +24,38 @@ describe('Controls', () => {
         expect(lockButton).toBeInTheDocument();
     });
 
+    test('displays "Open Gate" if props.closed === true', () => {
+        const { getByText } = render(<Controls closed={true} />);
+
+        const openGate = getByText(/Open Gate/);
+
+        expect(openGate).toBeInTheDocument();
+    })
+
+    test('displays "Close Gate" if props.closed === false', () => {
+        const { getByText } = render(<Controls closed={false} />);
+
+        const closeGate = getByText(/Close Gate/);
+
+        expect(closeGate).toBeInTheDocument();
+    })
+
+    test('displays "Lock Gate" if props.locked === false', () => {
+        const { getByText } = render(<Controls locked={false} />);
+
+        const lockGate = getByText(/Lock Gate/);
+
+        expect(lockGate).toBeInTheDocument();
+    });
+
+    test('displays "Unlock Gate" if props.locked === true', () => {
+        const { getByText } = render(<Controls locked={true} />);
+
+        const unlockGate = getByText(/Unlock Gate/);
+
+        expect(unlockGate).toBeInTheDocument();
+    });
+
     test('disables lock button if gate is open', () => {
         render(<Controls closed={false} />)
         const { getByTestId } = render(<Display closed={false} />);
@@ -71,8 +103,6 @@ describe('Controls', () => {
         fireEvent.click(openButton);
 
         expect(toggleClosed).toHaveBeenCalled();
-
-
     });
 
     test.skip('matches snapshot', () => {
