@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-testing-library";
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 import Dashboard from "./Dashboard";
 import Controls from "../controls/Controls";
 import Display from "../display/Display";
@@ -18,7 +18,7 @@ describe("Dashboard", () => {
     render(<Display />);
   });
 
-  test('matches snapshot', () => {
+  test("matches snapshot", () => {
     const tree = renderer.create(<Dashboard />);
 
     expect(tree.toJSON()).toMatchSnapshot();
